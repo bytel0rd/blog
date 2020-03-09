@@ -23,7 +23,7 @@ The various approaches include:
 ### Remote Procedure Calls (RPC).
 
 This approach primary involves invoking remote procedure calls (RPC). The renderer process can remotely require modules and execute it on the main process. The RPC focused styled front-end (Web App) becomes difficult to be migrated since the remote function call doesn\`t exist on the traditional browser windows. This approach doesn't enforce separation of concerns for both the main and renderer process are intertwined together which can be a debugging night mare for complex apps.
-``` ts
+```typescript
 // Main process
 import { app, BrowserWindow, dialog } from 'electron' // eslint-disable-line
 import PouchDB from 'pouchdb';
@@ -47,7 +47,7 @@ const getMember = memberDb.get;
 ### Inter Process Communication (IPC).
 
 The electron runtime allows an event driven communication for both the renderer and main processes. The event driven approach consists of a listener and an emitter which can exist on either the main or renderer process. The event payload must be JSON serializable before sending across to the other process. The level of abstraction above IPC is determined by the complexity of the app. The render process is not tied to the IPC mode of communication since easier abstraction can be done such that other forms of communications like HTTP and Sockets can be done on it. (I have a blog post coming up on abstracting over IPC protocol and HTTP Request). I generally prefer this approach than exposing a port on the user's machine.
-``` ts
+```typescript
 /* shared interface to enforce type consistency */
 // file -> libs/shared/index.ts
 // Enum to differentiate between the event type.
@@ -148,7 +148,7 @@ function responseTimeoutError(ctx: ApiFormat<any, any>): ResponseError {
 ```
 ### WEB Server.
 The electron application can either span an instance of the webserver on the main thread itself or through a child process. It is easier to convert a traditional webserver and web app to an electron app using this approach if done with the child process, the renderer process is forced to behave simply as a traditional browser window without any special functionalities. This approach is good for programs with multiple clients over a LAN and programs wanting to prevent cross-lock of data for multiple instance of the same program on the same PC. I believe is better to avoid opening a port on the user's machine against security risks.
-```ts
+```typescript
 // Main process
 // file -> main.js
 const {app, BrowserWindow} = require('electron')
