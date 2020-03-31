@@ -1,7 +1,7 @@
 +++
 author = "abiodun oyegoke"
 title = "Sharing Through Typescript (3.8) type Keyword"
-date = "2020-03-11"
+date = "2020-03-12"
 description = "How to easily share typescript type information and code easily across mutiple projects"
 tags = ["Typescript", "NodeJS", "folder Structure"]
 categories = ["Typescript"]
